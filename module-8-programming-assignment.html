@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CMPS 260: Module 8 Programming Assignment</title>
+<style>* { font-family: monospace; }</style>
+<script>
+
+// NOTE: You must implement the data structures using the no prototype approach.
+//       This is what the book uses, so you can copy it.
+//       See also: https://it.pointpark.edu/tutorials/no-prototype-vs-prototype/
+
+// NOTE: Please review the following links regularly:
+//       https://it.pointpark.edu/tutorials/arrays-vs-objects/
+//       https://it.pointpark.edu/tutorials/no-prototype-vs-prototype/
+//       https://it.pointpark.edu/tutorials/implementation-vs-interface/
+
+
+
+//----------------//
+// Big O notation //
+//----------------//
+console.log("Big O notation");
+
+// 1. Analyze the complexity of the isPalindrome function below. Make a
+//    distinction between best, worst, and average case complexity.
+
+function isPalindrome(str) {
+  for (var i = 0; i < str.length/2; i++) {
+    if (str[i] !== str[str.length-i-1]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+//Best O(1)
+//Average O(n)
+//Worst O(n)
+
+//I am not fully sure this is correct.  If its incorrect, let me know so I can revise.
+//The O notations were hard to understand to a point.  The way I see it is for each for, add a n or power to n.
+
+// 2. Write a program that finds the minimum element in a stack in O(1) time
+//    complexity. Note that earlier solutions searched through the elements on
+//    the stack but that leads to an O(n) solution.
+//    NOTE: this question is sometimes asked on interviews.
+
+function Stack() {
+  var items = [];
+
+  this.push = function(element) {
+    items.push(element);
+  };
+  this.pop = function(element) {
+    return items.pop(element);
+  };
+  this.peek = function () {
+    return items[items.length-1];
+  };
+  this.isEmpty = function () {
+    return items.length == 0;
+  };
+  this.size = function () {
+    return items.length;
+  };
+  this.clear = function () {
+    items = [];
+  };
+  this.print = function () {
+    console.log(items.toString());
+  };
+}
+
+var minStack = function (Stack) {
+  var min;
+  var s = Stack;
+  var min;
+
+  this.push = function (num) {
+    Stack.push(num);
+
+    if (num < min || min === undefined) {
+      min = num;
+    }
+  }
+
+  this.min = function () {
+    return min;
+  }
+}
+
+var s = new Stack ();
+var st = new minStack (s);
+
+
+st.push(5);
+st.push(8);
+st.push(13);
+st.push(2);
+st.push(10);
+console.log(st.min());
+
+//This was the only way I could really think of doing it without editing the stack function.
+
+
+//----------------------------//
+// Having fun with algorithms //
+//----------------------------//
+console.log("Having fun with algorithms");
+
+// 1. Solve Project Euler problem 1 (https://projecteuler.net/problem=1).
+var sum = 0;
+
+for (var i = 1; i < 1000; i++) {
+  sum = sum + (3 * i);
+}
+
+for (var i = 1; i < 1000; i++) {
+  sum = sum + (5 * i);
+}
+
+console.log(sum);
+// 2. Solve Project Euler problem 2 (https://projecteuler.net/problem=2).
+
+function fibEvens () {
+  var num1 = 1;
+  var num2 = 2;
+  var sum = 0; //This will be used to hold the sum of 1 and 2
+  var total = 0; //This will be used for the sum of all evens
+
+  while (sum < 1000000) {
+    sum = num1 + num2;
+    if (sum % 2 === 0) {
+      total = total + sum
+    }
+    num1 = num2
+    num2 = sum;
+  }
+  console.log(total);
+}
+
+fibEvens();
+
+
+</script>
+</head>
+<body>
+  See console!
+</body>
+</html>
